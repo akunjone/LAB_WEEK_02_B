@@ -3,6 +3,7 @@ package com.example.lab_week_02_b
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
@@ -21,6 +22,8 @@ class MainActivity : AppCompatActivity() {
     private val submitButton: Button
         get() = findViewById(R.id.submit_button)
 
+    private lateinit var colorInput: TextInputEditText
+
     private val startForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
             activityResult ->
         val data = activityResult.data
@@ -29,6 +32,10 @@ class MainActivity : AppCompatActivity() {
             Toast
                 .makeText(this, getString(R.string.color_code_input_invalid), Toast.LENGTH_LONG)
                 .show()
+        }
+        else{
+            //clear colorinput biar user langsung ngisi color hexnya
+            colorInput.text?.clear()
         }
     }
 
@@ -41,6 +48,9 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        //untuk hapus colorinput saat back diklik
+        colorInput = findViewById<TextInputEditText>(R.id.color_code_input_field)
 
         submitButton.setOnClickListener {
             val colorCode = findViewById<TextInputEditText>(R.id.color_code_input_field).text.toString()

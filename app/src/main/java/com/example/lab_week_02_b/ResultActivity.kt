@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.widget.TextView
 import android.widget.Toast
 import android.content.Intent
+import android.view.View
+import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.registerForActivityResult
 import androidx.appcompat.app.AppCompatActivity
@@ -47,6 +49,11 @@ class ResultActivity : AppCompatActivity() {
 
             val resultMessage = findViewById<TextView>(R.id.color_code_result_message)
             resultMessage.text = getString(R.string.color_code_result_message, colorCode?.uppercase())
+        }
+
+        val back_button = findViewById<Button>(R.id.button_back)
+        back_button.setOnClickListener {
+            finish() //biar langsung back krn udah kelar
         }
     }
 }
